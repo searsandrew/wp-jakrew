@@ -8,3 +8,86 @@ Requires at least: WordPress 4.9.6
 Template: centreforge
 Version: 1.0
 */
+
+@import url("https://use.typekit.net/cht0fus.css");
+
+.content {
+    color: rgb(73, 80, 88);
+    margin-bottom: 60px;
+}
+  
+a.navbar-brand img {
+    height: 32px;
+}
+  
+p {
+    color: rgb(73, 80, 88);
+    text-shadow: rgb(241, 236, 233) 0px 0px 5px;
+}
+  
+a, .btn-link {
+    color: rgb(215, 67, 63);
+}
+
+.btn-text, .text-primary {
+  color: rgb(215, 67, 63) !important;
+}
+
+h1, h2, h4, h6, .text-shackleton {
+    font-family: shackleton-condensed, serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h3, h5, .text-signpainter {
+  font-family: house-script, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.custom-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.card-columns {
+    /* @include media-breakpoint-only(md) {
+        column-count: 1;
+      }
+    @include media-breakpoint-only(lg) {
+      column-count: 2;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 2;
+    } */
+}
+
+.card {
+    background-color: rgba(241, 236, 233, .5);
+    border: 0px;
+    border-radius: 0.15rem;
+    box-shadow: rgba( 73, 80, 88, .5 ) 0px 5px 5px;
+}
+
+.list-hours {
+    font-size: 0.9rem;
+  }
+  
+  .list-hours .list-hours-item {
+    border-bottom: 1px solid rgb(215, 67, 63);
+    padding-bottom: .25rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  
+  .list-hours .list-hours-item.today {
+    font-weight: bold;
+    color: rgb(215, 67, 63);
+  }
+  
+  @media (min-width: 992px) {
+    .list-hours {
+      width: 50%;
+      font-size: 1.1rem;
+    }
+  }
