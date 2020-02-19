@@ -8,21 +8,77 @@ get_template_part('nav','jakrew'); ?>
                 while ( have_posts() ) : the_post();
                     if(is_front_page())
                     {
-                        echo '<h1 class="page-title">'.get_the_title().'</h1>';
+                        echo '<h1 class="page-title mt-5 mt-lg-0">'.get_the_title().'</h1>';
                         the_content();
                     }
                     echo '<hr/>';
                 endwhile; ?>
-                <h4 class="text-center"><?= storeIsOpen()?'We are currently Open':'Visit us tomorrow at'; ?></h4>
+                <h4 class="text-center"><?= storeIsOpen(); ?></h4>
                 <p class="text-center"> 
                     28W571 Batavia Road<br/>
                     Warrenville, IL<br/>
+                    <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#modalStoreHours">
+                        Store Hours
+                    </button> • 
                     <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#modalMapsGoogle">
                         Find us on Google
                     </button>
                 </p>
                 <hr/>
-                
+                <!-- Store Hours -->
+                <div class="modal fade" id="modalStoreHours" tabindex="-1" role="dialog" aria-labelledby="modalStoreHoursTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalStoreHoursTitle">Store Hours</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Sunday</th>
+                                        <td>12:00 PM</td>
+                                        <td>6:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Monday</th>
+                                        <td>4:00 PM</td>
+                                        <td>10:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tuesday</th>
+                                        <td>4:00 PM</td>
+                                        <td>10:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Wednesday</th>
+                                        <td>4:00 PM</td>
+                                        <td>10:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Thursday</th>
+                                        <td>3:00 PM</td>
+                                        <td>10:00 PM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Friday</th>
+                                        <td>3:00 PM</td>
+                                        <td>1:00 AM</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Saturday</th>
+                                        <td>9:00 AM</td>
+                                        <td>11:00 PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
                 <div class="modal fade" id="modalMapsGoogle" tabindex="-1" role="dialog" aria-labelledby="modalMapsGoogleTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
