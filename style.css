@@ -33,16 +33,20 @@ a, .btn-link {
   color: rgb(215, 67, 63) !important;
 }
 
-h1, h2, h4, h6, .text-shackleton {
+h1, h2, h4, h5, h6, .text-shackleton {
     font-family: shackleton-condensed, serif;
     font-weight: 400;
     font-style: normal;
 }
 
-h3, h5, .text-signpainter {
+h3, .text-signpainter {
   font-family: house-script, sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.font-reset {
+  font-family: sans-serif !important;
 }
 
 .custom-logo {

@@ -27,16 +27,71 @@ get_template_part('nav','jakrew'); ?>
                             Find us on Google
                         </button>
                     </p>
-                    <hr/>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                     <?php if(is_front_page())
                     {
+                        $args = array(
+                            'post_type' => 'schedule',
+                            'category_name' => date('D', time())
+                        );
+                        // The Query
+                        $the_query = new WP_Query( $args );
                         
-                    } else {
-                        echo '<h1 class="page-title">'.get_the_title().'</h1>';
-                        the_content();
-                    } ?>
+                        // The Loop
+                        if ( $the_query->have_posts() ) {
+                            echo sprintf('<h3>Our weekly %s events...</h3>', date('l', time()));
+                            echo '<div class="row">';
+                            while ( $the_query->have_posts() ) {
+                                $the_query->the_post();
+                                echo '<div class="col-md-6"><div class="card">';
+                                if (has_post_thumbnail( $post->ID ) ):
+                                    $thumb_id = get_post_thumbnail_id( $post->ID );
+                                    $image = wp_get_attachment_image_src( $thumb_id, 'single-post-thumbnail' );
+                                    echo sprintf('<img src="%s" class="card-img-top" alt="%s" />', $image[0], get_post_meta($thumb_id, '_wp_attachment_image_alt', true));
+                                endif;
+
+                                $costCheck = get_field('jrg_cost') != 0?'<span class="badge badge-success float-right font-reset">$'.get_field('jrg_cost').'.00</span>':'';
+                                $guestCheck = get_field('jrg_guests') == 1?'<a href="#" class="card-link">Attend</a>':'';
+
+                                //echo 'Field: '.the_field('jrg_time', $post->ID);
+
+                                echo sprintf('<div class="card-body">
+                                    <h5 class="card-title">%1$s %2$s</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">%3$s</h6>
+                                    <a href="%4$s" class="card-link">Learn More</a>
+                                    %5$s
+                                </div>',
+                                get_the_title(),
+                                $costCheck,
+                                get_field('jrg_time'),
+                                get_the_permalink(),
+                                $guestCheck);
+                            }
+                            echo '</div>';
+                        } else {
+                            // no posts found
+                        }
+                        /* Restore original Post Data */
+                        wp_reset_postdata();
+
+
+                    } else { ?>
+                        <div class="card">
+                            <?php if (has_post_thumbnail( $post->ID ) ):
+                                $thumb_id = get_post_thumbnail_id( $post->ID );
+                                $image = wp_get_attachment_image_src( $thumb_id, 'single-post-thumbnail' ); ?>
+                                <img src="<?php echo $image[0]; ?>" class="card-img-top" alt="<?php get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>" />
+                            <?php endif; ?>
+                            <div class="card-body">
+                                <h5 class="card-title"><?= get_the_title(); ?></h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <div class="card-text"><?= get_the_content(); ?></div>
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         <?php endwhile; ?>
