@@ -54,8 +54,6 @@ get_template_part('nav','jakrew'); ?>
                                 $costCheck = get_field('jrg_cost') != 0?'<span class="badge badge-success float-right font-reset">$'.get_field('jrg_cost').'.00</span>':'';
                                 $guestCheck = get_field('jrg_guests') == 1?'<a href="#" class="card-link">Attend</a>':'';
 
-                                //echo 'Field: '.the_field('jrg_time', $post->ID);
-
                                 echo sprintf('<div class="card-body">
                                     <h5 class="card-title">%1$s %2$s</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">%3$s</h6>
